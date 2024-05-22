@@ -1,28 +1,23 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<style>
-table, th, td {
-  border: 1px solid black;
-  border-collapse: collapse;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Stars Fetcher</title>
 </head>
 <body>
-
-<table>
-  <tr>
-    <th>Month</th>
-    <th>Savings</th>
-  </tr>
-  <tr>
-    <td>January</td>
-    <td>$100</td>
-  </tr>
-  <tr>
-    <td>February</td>
-    <td>$80</td>
-  </tr>
-</table>
-
+    <div>
+        <label for="owner">Owner:</label>
+        <input type="text" id="owner" placeholder="Enter owner name" value="octocat">
+        <br>
+        <label for="repo">Repository:</label>
+        <input type="text" id="repo" placeholder="Enter repository name" value="Hello-World">
+        <br>
+        <button id="fetch-stars">Fetch Stars</button>
+    </div>
+    <div>
+        Repository has <span id="star-count">0</span> stars.
+    </div>
+    <script src="./assets/js/index.js"></script>
 </body>
-</html> 
+</html>
