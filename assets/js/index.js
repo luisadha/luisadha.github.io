@@ -1,4 +1,3 @@
-
 document.addEventListener('DOMContentLoaded', () => {
     const fetchButton = document.getElementById('fetch-stars');
 
