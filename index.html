@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Stars Fetcher</title>
+</head>
+<body>
+    <div>
+        <label for="profilGithub">Owner:</label>
+        <input type="text" id="profilGithub" placeholder="Enter owner name" value="">
+        <br>
+        <button onclick="fetchStars()">Submit</button>
+    </div>
+    <div id="results"></div>
+
+    <script>
+        async function fetchStars() {
+            const username = document.querySelector('#profilGithub').value;
+            if (!username) {
+                alert("Please enter a username");
+                return;
+            }
+
+            try {
+                const response = await fetch(`https://api.github.com/users/${username}/starred`);
+                if (!response.ok) {
+                    throw new Error(`Error: ${response.status} ${response.statusText}`);
+                }
+
+                const starredRepos = await response.json();
+                const resultsDiv = document.getElementById('results');
+                resultsDiv.innerHTML = ''; // Clear previous results
+
+                starredRepos.forEach(repo => {
+                    const repoInfo = `
+                        <div>
+                            <h3>${repo.name}</h3>
+                            <p>${repo.description || 'No description'}</p>
+                            <p>Language: ${repo.language || 'N/A'}</p>
+                            <p>Stars: ${repo.stargazers_count}</p>
+                            <p>Watchers: ${repo.watchers_count}</p>
+                        </div>
+                        <hr>
+                    `;
+                    resultsDiv.innerHTML += repoInfo;
+                });
+
+            } catch (error) {
+                console.error('Error fetching starred repositories:', error.message);
+                alert('Error fetching starred repositories');
+            }
+        }
+    </script>
+</body>
+</html>
