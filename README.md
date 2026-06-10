@@ -27,26 +27,27 @@ chmod 0755 nene/DEBIAN
 
 ls -a
 
-rm -rf .git
+mkdir -p build
 
-rm -rf .github
+rsync -a nene/ nene_aarch64/ \
+  --exclude-from=.debignore
 
-dpkg-deb --build nene
+dpkg-deb --build nene_aarch64
 
 menghasilkan:
 
-nene.deb
+nene_aarch64.deb
 
 git clone  https://github.com/luisadha/luisadha.github.io.git
 
-mv nene.deb luisadha.github.io
+mv nene_aarch64.deb luisadha.github.io
 
 termux-apt-repo luisadha.github.io luisadha.github.io stable main
 
 
 cd luisadha.github.io
 git add dists
-git add nene.deb
+git add nene_aarch64.deb
 
 git commit -m "Build debian package"
 
