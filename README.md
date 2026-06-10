@@ -3,6 +3,10 @@
 
 # Cara buat
 ```sh
+Buat file control di repository target
+DEBIAN/control
+seperti di https://github.com/luisadha/nene.git
+
 git clone https://github.com/luisadha/nene.git
 
 chmod 0755 nene/DEBIAN
