@@ -6,9 +6,9 @@ Description: Nene is both a static site and a shell script management tool for t
 Priority: optional
 Section: package manage
 Filename: dists/stable/main/binary-aarch64/nene.deb
-Size: 54764
-MD5Sum: 7d60af8fe52533078af347d8c0cebc5f
-SHA1: 4c32200cbfb95b96882f2f998309c32b95575b2d
-SHA256: c1397d6ce6e5e70079cb8d076a1d6a628becd69f74e2042fa0773e343e9ee061
-SHA512: bfe761a57eff5d34dbb1b30ec9b83229ea258b67529433e4ab43af05eb51354bd713bbd7c5a24960758c97505dc4d7bc57be560b4a9b98f654f094e86c5e3f95
+Size: 54020
+MD5Sum: aab6f61be9b54e0f93575aada1e6b421
+SHA1: e60bb6a65901cb1dc6af26fc7ca16606178451dc
+SHA256: 5479fce1e9353fcc2fc7676e34f26d56bcfba13bb62466dfbd40bbe4e23c99a0
+SHA512: 60e2e3f1067689d1f083368b670c1872424eeb3a85588216aabf5d2f934fbee27814f319bee8aa8d752a31281a00a93d9dc7cd56ad60c4facaf66586d47bc749
 
