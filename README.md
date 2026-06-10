@@ -27,10 +27,12 @@ chmod 0755 nene/DEBIAN
 
 ls -a
 
-mkdir -p build
-
-rsync -a nene/ nene_aarch64/ \
-  --exclude-from=.debignore
+mkdir -p nene_aarch64
+rsync -av \
+  --include='DEBIAN/***' \
+  --include='data/***' \
+  --exclude='*' \
+  nene/ nene_aarch64/
 
 dpkg-deb --build nene_aarch64
 
