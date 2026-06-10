@@ -12,7 +12,7 @@ Version: <versi paket>
 Architecture: aarch64
 Maintainer: <nama anda> <email anda>     
 Description: <Jelaskan deskripsi paket anda>
-Priority: optionwl
+Priority: optional
 Section: <Kategori paket anda>
 
 dan structur folder seperti ini pada repositori anda
