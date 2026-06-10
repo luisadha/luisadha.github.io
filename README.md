@@ -37,7 +37,7 @@ menghasilkan:
 
 nene.deb
 
-git clone  https://https://github.com/luisadha/luisadha.github.io.git
+git clone  https://github.com/luisadha/luisadha.github.io.git
 
 mv nene.deb luisadha.github.io
 
