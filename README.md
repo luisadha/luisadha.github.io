@@ -25,6 +25,12 @@ git clone https://github.com/luisadha/nene.git
 
 chmod 0755 nene/DEBIAN
 
+ls -a
+
+rm -rf .git
+
+rm -rf .github
+
 dpkg-deb --build nene
 
 menghasilkan:
