@@ -1,0 +1,14 @@
+Package: nene
+Version: 1.6.0
+Architecture: aarch64
+Maintainer: Luis Adha <adharudin14@gmail.com>     
+Description: Nene is both a static site and a shell script management tool for that site
+Priority: optional
+Section: package manage
+Filename: dists/stable/main/binary-aarch64/nene_aarch64.deb
+Size: 11900
+MD5Sum: 580cdcf190f8a6a19683b47a463d4c74
+SHA1: 72873f664c2d9fcd2594b7c7be572cd0e4b6094f
+SHA256: 55e2eb5b0cee3e8a391108786aced5b973d26d42750d766b71f1b46f24131a35
+SHA512: 0c7e7d1bdb8be28d49b3e5f4c60fbbfb06115eabdf46a23a5fcbee517aed9b565cfb546b2c58983c7cd7873f237a8df4699af42db5346c7a9003e347395714e5
+
