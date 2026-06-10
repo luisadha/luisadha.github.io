@@ -5,7 +5,21 @@
 ```sh
 Buat file control di repository target
 DEBIAN/control
-seperti di https://github.com/luisadha/nene.git
+dengan isi
+
+Package: <nama paket>
+Version: <versi paket>
+Architecture: aarch64
+Maintainer: <nama anda> <email anda>     
+Description: <Jelaskan deskripsi paket anda>
+Priority: optionwl
+Section: <Kategori paket anda>
+
+dan structur folder seperti ini pada repositori anda
+/data/data/com.termux/files/usr/bin
+/data/data/com.termux/files/usr/man
+
+contohnya https://github.com/luisadha/nene.git
 
 git clone https://github.com/luisadha/nene.git
 
