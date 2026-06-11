@@ -72,7 +72,7 @@ git clone https://github.com/luisadha/nene.git
 chmod 0755 nene/DEBIAN
 ```
 
-Salin ke folder build:
+Siapkan folder build:
 
 ```bash
 mkdir -p nene_aarch64
@@ -83,7 +83,7 @@ rsync -av \
   nene/ nene_aarch64/
 ```
 
-Build file `.deb`:
+Build folder menjadi file `.deb`:
 
 ```bash
 dpkg-deb --build nene_aarch64
@@ -93,7 +93,7 @@ Menghasilkan: `nene_aarch64.deb`
 
 ### 4. Generate Metadata Repositori
 
-Clone repositori mirror (GitHub Pages), pindahkan `.deb` ke dalamnya, lalu generate metadata:
+Clone repositori yang dipersiapkan untuk mirror apt (cth: GitHub Pages), pindahkan `.deb` ke dalamnya, lalu generate metadata menggunakan command termux-apt-repo :
 
 ```bash
 git clone https://github.com/luisadha/luisadha.github.io.git
