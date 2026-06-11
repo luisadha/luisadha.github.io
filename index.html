@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>luisadha · Termux APT Repository</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0d0f14;
+      --surface:   #13161e;
+      --border:    #1e2330;
+      --accent:    #5b8dee;
+      --accent2:   #a78bfa;
+      --text:      #c9d1e0;
+      --muted:     #5a6480;
+      --code-bg:   #0a0c10;
+      --code-text: #7dd3fc;
+      --green:     #4ade80;
+      --yellow:    #fbbf24;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    /* ─── Scanline texture overlay ─── */
+    body::before {
+      content: '';
+      pointer-events: none;
+      position: fixed;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0,0,0,.06) 2px,
+        rgba(0,0,0,.06) 4px
+      );
+      z-index: 999;
+    }
+
+    /* ─── Layout ─── */
+    .page { max-width: 760px; margin: 0 auto; padding: 0 24px 80px; }
+
+    /* ─── Header ─── */
+    header {
+      padding: 60px 0 48px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 56px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: var(--green);
+      background: rgba(74, 222, 128, .08);
+      border: 1px solid rgba(74, 222, 128, .2);
+      border-radius: 4px;
+      padding: 3px 10px;
+      margin-bottom: 20px;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    .badge::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 6px var(--green);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: .3; }
+    }
+
+    h1 {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: clamp(22px, 5vw, 32px);
+      font-weight: 600;
+      color: #fff;
+      letter-spacing: -.02em;
+      margin-bottom: 12px;
+    }
+
+    h1 span { color: var(--accent); }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 24px;
+    }
+
+    .meta-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+      color: var(--accent2);
+      text-decoration: none;
+      border: 1px solid rgba(167, 139, 250, .25);
+      border-radius: 4px;
+      padding: 6px 12px;
+      transition: background .15s, border-color .15s;
+    }
+    .meta-link:hover { background: rgba(167,139,250,.08); border-color: rgba(167,139,250,.5); }
+    .meta-link svg { width: 13px; height: 13px; flex-shrink: 0; }
+
+    /* ─── Sections ─── */
+    section { margin-bottom: 56px; }
+
+    .section-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    h2 {
+      font-size: 18px;
+      font-weight: 600;
+      color: #e8edf5;
+      margin-bottom: 14px;
+    }
+
+    p { color: var(--text); margin-bottom: 16px; }
+
+    /* ─── Steps ─── */
+    .steps { counter-reset: step; display: flex; flex-direction: column; gap: 32px; }
+
+    .step {
+      position: relative;
+      padding-left: 44px;
+    }
+
+    .step::before {
+      counter-increment: step;
+      content: counter(step);
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: var(--surface);
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .step h3 {
+      font-size: 15px;
+      font-weight: 600;
+      color: #dde4f0;
+      margin-bottom: 10px;
+    }
+
+    /* ─── Code blocks ─── */
+    .code-wrap {
+      background: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      margin: 14px 0;
+    }
+
+    .code-wrap.labeled .code-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 14px;
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+    }
+
+    .code-lang {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .copy-btn {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      color: var(--muted);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 2px 8px;
+      border-radius: 3px;
+      transition: color .15s, background .15s;
+      letter-spacing: .06em;
+    }
+    .copy-btn:hover { color: var(--accent); background: rgba(91,141,238,.1); }
+    .copy-btn.copied { color: var(--green); }
+
+    pre {
+      padding: 16px 18px;
+      overflow-x: auto;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 13px;
+      line-height: 1.65;
+      color: var(--code-text);
+    }
+
+    pre .comment { color: var(--muted); }
+    pre .dollar   { color: var(--accent2); user-select: none; }
+    pre .flag     { color: #f472b6; }
+    pre .string   { color: #86efac; }
+    pre .key      { color: #fde68a; }
+    pre .val      { color: var(--code-text); }
+
+    /* ─── Inline code ─── */
+    code {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12.5px;
+      color: var(--accent2);
+      background: rgba(167,139,250,.1);
+      border-radius: 4px;
+      padding: 1px 6px;
+    }
+
+    /* ─── File tree ─── */
+    .filetree {
+      background: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px 18px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 13px;
+      color: #94a3b8;
+      line-height: 2;
+      margin: 14px 0;
+    }
+    .filetree .dir  { color: var(--accent); }
+    .filetree .file { color: #c9d1e0; }
+
+    /* ─── Control file table ─── */
+    .control-block {
+      background: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px 18px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 13px;
+      line-height: 1.9;
+      margin: 14px 0;
+    }
+    .control-block .k { color: var(--yellow); }
+    .control-block .v { color: var(--code-text); }
+    .control-block .placeholder { color: var(--muted); font-style: italic; }
+
+    /* ─── Callout ─── */
+    .callout {
+      display: flex;
+      gap: 12px;
+      background: rgba(91,141,238,.07);
+      border: 1px solid rgba(91,141,238,.2);
+      border-left: 3px solid var(--accent);
+      border-radius: 6px;
+      padding: 14px 16px;
+      margin: 16px 0;
+      font-size: 13.5px;
+      color: #a8b8d8;
+    }
+    .callout svg { flex-shrink: 0; margin-top: 2px; color: var(--accent); }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ─── Footer ─── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding-top: 32px;
+      text-align: center;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    footer a { color: var(--muted); }
+    footer a:hover { color: var(--accent); }
+
+    @media (max-width: 480px) {
+      pre { font-size: 11.5px; }
+      .step { padding-left: 38px; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ─── HEADER ─── -->
+  <header>
+    <div class="badge">APT Repository · Termux</div>
+    <h1><span>luisadha</span>.github.io</h1>
+    <p class="subtitle">Repositori APT pribadi untuk Termux, dihosting melalui GitHub Pages.</p>
+    <a class="meta-link" href="https://luisadha.github.io/dists/stable/main/binary-aarch64/Packages" target="_blank" rel="noopener">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M13 8.5V13a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h4.5"/>
+        <path d="M9 2h5v5M14 2 8 8" stroke-linecap="round"/>
+      </svg>
+      Periksa Packages metadata
+    </a>
+  </header>
+
+  <!-- ─── CARA MENGGUNAKAN ─── -->
+  <section>
+    <div class="section-label">Penggunaan</div>
+    <h2>Cara Menggunakan Repositori</h2>
+    <p>Tambahkan repositori ke daftar sumber APT Termux, lalu install paket yang diinginkan.</p>
+
+    <p style="margin-top:18px; margin-bottom:8px; font-size:13px; color: var(--muted);">① Tambahkan sumber repositori:</p>
+    <div class="code-wrap labeled">
+      <div class="code-header">
+        <span class="code-lang">bash</span>
+        <button class="copy-btn" onclick="copyCode(this)">salin</button>
+      </div>
+      <pre><code><span class="dollar">$ </span>mkdir -p $PREFIX/etc/apt/sources.list.d
+<span class="dollar">$ </span>echo <span class="string">"deb [trusted=yes] https://luisadha.github.io/ stable main"</span> \
+  &gt; $PREFIX/etc/apt/sources.list.d/luisadha.list</code></pre>
+    </div>
+
+    <p style="margin-top:18px; margin-bottom:8px; font-size:13px; color: var(--muted);">② Perbarui daftar paket:</p>
+    <div class="code-wrap labeled">
+      <div class="code-header">
+        <span class="code-lang">bash</span>
+        <button class="copy-btn" onclick="copyCode(this)">salin</button>
+      </div>
+      <pre><code><span class="dollar">$ </span>apt update</code></pre>
+    </div>
+
+    <p style="margin-top:18px; margin-bottom:8px; font-size:13px; color: var(--muted);">③ Install paket:</p>
+    <div class="code-wrap labeled">
+      <div class="code-header">
+        <span class="code-lang">bash</span>
+        <button class="copy-btn" onclick="copyCode(this)">salin</button>
+      </div>
+      <pre><code><span class="dollar">$ </span>pkg install <span class="placeholder">&lt;nama-paket&gt;</span></code></pre>
+    </div>
+  </section>
+
+  <!-- ─── CARA MEMBUAT PAKET ─── -->
+  <section>
+    <div class="section-label">Kontribusi</div>
+    <h2>Cara Membuat dan Menerbitkan Paket</h2>
+
+    <div class="steps">
+
+      <!-- Step 1 -->
+      <div class="step">
+        <h3>Buat file <code>DEBIAN/control</code></h3>
+        <p style="font-size:13.5px;">Di repositori paket Anda, buat file kontrol dengan isi berikut:</p>
+        <div class="control-block">
+          <span class="k">Package:</span> <span class="placeholder v">&lt;nama-paket&gt;</span><br>
+          <span class="k">Version:</span> <span class="placeholder v">&lt;versi&gt;</span><br>
+          <span class="k">Architecture:</span> <span class="v">aarch64</span><br>
+          <span class="k">Maintainer:</span> <span class="placeholder v">&lt;Nama Anda&gt; &lt;email@domain.com&gt;</span><br>
+          <span class="k">Description:</span> <span class="placeholder v">&lt;Deskripsi singkat paket&gt;</span><br>
+          <span class="k">Priority:</span> <span class="v">optional</span><br>
+          <span class="k">Section:</span> <span class="placeholder v">&lt;kategori&gt;</span>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="step">
+        <h3>Susun Struktur Folder</h3>
+        <p style="font-size:13.5px;">Repositori paket harus mengikuti struktur direktori berikut:</p>
+        <div class="filetree">
+<span class="dir">paket-anda/</span>
+├── <span class="dir">DEBIAN/</span>
+│   └── <span class="file">control</span>
+└── <span class="dir">data/</span>
+    └── <span class="dir">data/</span>
+        └── <span class="dir">com.termux/</span>
+            └── <span class="dir">files/</span>
+                └── <span class="dir">usr/</span>
+        </div>
+        <div class="callout">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="8" cy="8" r="6.5"/>
+            <path d="M8 5v3.5M8 11h.01" stroke-linecap="round"/>
+          </svg>
+          Lihat contoh lengkap di <a href="https://github.com/luisadha/nene" target="_blank" rel="noopener">github.com/luisadha/nene</a>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="step">
+        <h3>Build Paket <code>.deb</code></h3>
+        <p style="font-size:13.5px;">Clone repositori paket, siapkan folder build, lalu jalankan <code>dpkg-deb</code>:</p>
+
+        <div class="code-wrap labeled">
+          <div class="code-header">
+            <span class="code-lang">bash · clone &amp; persiapan</span>
+            <button class="copy-btn" onclick="copyCode(this)">salin</button>
+          </div>
+          <pre><code><span class="dollar">$ </span>git clone https://github.com/luisadha/nene.git
+<span class="dollar">$ </span>chmod 0755 nene/DEBIAN
+
+<span class="dollar">$ </span>mkdir -p nene_aarch64
+<span class="dollar">$ </span>rsync <span class="flag">-av</span> \
+  <span class="flag">--include</span>=<span class="string">'DEBIAN/***'</span> \
+  <span class="flag">--include</span>=<span class="string">'data/***'</span> \
+  <span class="flag">--exclude</span>=<span class="string">'*'</span> \
+  nene/ nene_aarch64/</code></pre>
+        </div>
+
+        <div class="code-wrap labeled">
+          <div class="code-header">
+            <span class="code-lang">bash · build</span>
+            <button class="copy-btn" onclick="copyCode(this)">salin</button>
+          </div>
+          <pre><code><span class="dollar">$ </span>dpkg-deb <span class="flag">--build</span> nene_aarch64
+<span class="comment"># Menghasilkan: nene_aarch64.deb</span></code></pre>
+        </div>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="step">
+        <h3>Generate Metadata Repositori</h3>
+        <p style="font-size:13.5px;">Clone repositori GitHub Pages, pindahkan <code>.deb</code> ke dalamnya, lalu generate metadata dengan <code>termux-apt-repo</code>:</p>
+
+        <div class="code-wrap labeled">
+          <div class="code-header">
+            <span class="code-lang">bash</span>
+            <button class="copy-btn" onclick="copyCode(this)">salin</button>
+          </div>
+          <pre><code><span class="dollar">$ </span>git clone https://github.com/luisadha/luisadha.github.io.git
+
+<span class="dollar">$ </span>mv nene_aarch64.deb luisadha.github.io/
+
+<span class="dollar">$ </span>termux-apt-repo luisadha.github.io luisadha.github.io stable main</code></pre>
+        </div>
+      </div>
+
+      <!-- Step 5 -->
+      <div class="step">
+        <h3>Push ke GitHub</h3>
+        <p style="font-size:13.5px;">Commit dan push perubahan ke branch utama:</p>
+
+        <div class="code-wrap labeled">
+          <div class="code-header">
+            <span class="code-lang">bash</span>
+            <button class="copy-btn" onclick="copyCode(this)">salin</button>
+          </div>
+          <pre><code><span class="dollar">$ </span>cd luisadha.github.io
+<span class="dollar">$ </span>git add dists
+<span class="dollar">$ </span>git add nene_aarch64.deb
+<span class="dollar">$ </span>git commit <span class="flag">-m</span> <span class="string">"Build debian package"</span>
+<span class="dollar">$ </span>git push <span class="flag">-u</span> origin main</code></pre>
+        </div>
+      </div>
+
+    </div><!-- /steps -->
+  </section>
+
+  <!-- ─── LISENSI ─── -->
+  <section style="margin-bottom:0">
+    <div class="section-label">Lisensi</div>
+    <p style="color:var(--muted); font-size:13.5px;">Didistribusikan untuk keperluan pribadi. Gunakan dengan bijak.</p>
+  </section>
+
+  <footer>
+    <p><a href="https://github.com/luisadha/luisadha.github.io" target="_blank" rel="noopener">github.com/luisadha/luisadha.github.io</a></p>
+  </footer>
+
+</div>
+
+<script>
+  function copyCode(btn) {
+    const pre = btn.closest('.code-wrap').querySelector('pre');
+    // get text, strip prompt symbols
+    const text = pre.innerText.replace(/^\$ /gm, '').trim();
+    navigator.clipboard.writeText(text).then(() => {
+      btn.textContent = 'tersalin ✓';
+      btn.classList.add('copied');
+      setTimeout(() => {
+        btn.textContent = 'salin';
+        btn.classList.remove('copied');
+      }, 1800);
+    });
+  }
+</script>
+</body>
+</html>
