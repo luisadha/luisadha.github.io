@@ -11,7 +11,7 @@ Repositori APT pribadi untuk Termux, dihosting melalui GitHub Pages.
 Tambahkan repositori ke daftar sumber APT Termux Anda:
 
 ```bash
-mkdir -p PREFIX/etc/apt/sources.list.d
+mkdir -p $PREFIX/etc/apt/sources.list.d
 echo "deb [trusted=yes] https://luisadha.github.io/ stable main" \
   > $PREFIX/etc/apt/sources.list.d/luisadha.list
 ```
