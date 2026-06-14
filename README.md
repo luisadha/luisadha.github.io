@@ -1,4 +1,4 @@
-# luisadha.github.io â€” Termux APT Repository
+# luisadha.github.io Termux APT Repository
 
 Repositori APT pribadi untuk Termux, dihosting melalui GitHub Pages.
 
@@ -70,16 +70,8 @@ Section: <kategori>
 
 Repositori paket harus memiliki struktur berikut:
 
-```
-paket-anda/
-â”œâ”€â”€ DEBIAN/
-â”‚   â””â”€â”€ control
-â””â”€â”€ data/
-    â””â”€â”€ data/
-        â””â”€â”€ com.termux/
-            â””â”€â”€ files/
-                â””â”€â”€ usr/
-```
+> [!WARNING]
+> Content unavailable.
 
 Lihat contoh lengkap: [github.com/luisadha/nene](https://github.com/luisadha/nene)
 
