@@ -114,7 +114,8 @@ git push -u origin main
 ```
 
 ---
-
+## Referensi 
+https://github.com/rendiix/rendiix.github.io
 ## Lisensi
 
 Didistribusikan untuk keperluan pribadi. Gunakan dengan bijak.
