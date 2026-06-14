@@ -39,6 +39,15 @@ Install paket:
 pkg install <nama-paket>
 ```
 
+Perbaiki versi yang tidak singkron
+
+```
+pkg clean
+rm -rf /data/data/com.termux/cache/apt/archives/*
+apt update
+apt install --reinstall nene
+```
+
 ---
 
 ## Cara Membuat dan Menerbitkan Paket
@@ -117,13 +126,13 @@ termux-apt-repo luisadha.github.io luisadha.github.io stable main
 ### 5. Push ke GitHub
 
 ```bash
-cd luisadha.github.io
+cd luisadha.github.io/
 git add dists
 git add nene_aarch64.deb
 git commit -m "Build debian package"
 git push -u origin main
 ```
-
+<!-- git push --force-with-lease origin main -->
 ---
 ## Referensi 
 https://github.com/rendiix/rendiix.github.io
