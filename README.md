@@ -4,8 +4,19 @@ Repositori APT pribadi untuk Termux, dihosting melalui GitHub Pages.
 
 > Periksa metadata: [Packages](https://luisadha.github.io/dists/stable/main/binary-aarch64/Packages)
 
+> Langganan repositori ini:
+
+```sh
+ wget https://repo.luisadha.dev/install-repo.sh && bash install-repo.sh
+```
 ---
 
+#### Table of contents
+
+
+| Package | Version | Descriptions |
+| --- | :---: | --- |
+| [nene](https://github.com/luisadha/nene) | 1.6.0 | nene - interactive package manager and script runner|
 ## Cara Menggunakan Repositori Ini
 
 Tambahkan repositori ke daftar sumber APT Termux Anda:
