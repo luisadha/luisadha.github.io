@@ -321,6 +321,9 @@
       .step { padding-left: 38px; }
     }
   </style>
+<script>
+document.getElementById('domain').textContent = window.location.hostname;
+</script> 
 </head>
 <body>
 <div class="page">
@@ -328,7 +331,7 @@
   <!-- ─── HEADER ─── -->
   <header>
     <div class="badge">APT Repository · Termux</div>
-    <h1><span>luisadha</span>.github.io</h1>
+    <h1><span id="domain"></span></h1>
     <p class="subtitle">Repositori APT pribadi untuk Termux, dihosting melalui GitHub Pages.</p>
     <a class="meta-link" href="https://luisadha.github.io/dists/stable/main/binary-aarch64/Packages" target="_blank" rel="noopener">
       <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
