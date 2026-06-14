@@ -333,7 +333,7 @@ document.getElementById('domain').textContent = window.location.hostname;
     <div class="badge">APT Repository · Termux</div>
     <h1><span>repo.luisadha</span>.dev</h1>
     <p class="subtitle">Repositori APT pribadi untuk Termux, dihosting melalui GitHub Pages.</p>
-    <a class="meta-link" href="https://luisadha.github.io/dists/stable/main/binary-aarch64/Packages" target="_blank" rel="noopener">
+    <a class="meta-link" href="https://repo.luisadha.dev/dists/stable/main/binary-aarch64/Packages" target="_blank" rel="noopener">
       <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
         <path d="M13 8.5V13a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h4.5"/>
         <path d="M9 2h5v5M14 2 8 8" stroke-linecap="round"/>
@@ -355,7 +355,7 @@ document.getElementById('domain').textContent = window.location.hostname;
         <button class="copy-btn" onclick="copyCode(this)">salin</button>
       </div>
       <pre><code><span class="dollar">$ </span>mkdir -p $PREFIX/etc/apt/sources.list.d
-<span class="dollar">$ </span>echo <span class="string">"deb [trusted=yes] https://luisadha.github.io/ stable main"</span> \
+<span class="dollar">$ </span>echo <span class="string">"deb [trusted=yes] https://repo.luisadha.dev/ stable main"</span> \
   &gt; $PREFIX/etc/apt/sources.list.d/luisadha.list</code></pre>
     </div>
 
