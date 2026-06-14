@@ -404,17 +404,20 @@ document.getElementById('domain').textContent = window.location.hostname;
       <div class="step">
         <h3>Susun Struktur Folder</h3>
         <p style="font-size:13.5px;">Repositori paket harus mengikuti struktur direktori berikut:</p>
-        <div class="filetree">
-<pre><span class="dir">paket-anda/</span>
+  
+  <div class="filetree">
+<pre><span class="dir">repo-paket-anda/</span>
 ├── <span class="dir">DEBIAN/</span>
 │   └── <span class="file">control</span>
 └── <span class="dir">data/</span>
-    └── <span class="dir">data/</span>
-        └── <span class="dir">com.termux/</span>
-            └── <span class="dir">files/</span>
-                └── <span class="dir">usr/</span>
-        </pre>
-        </div>
+    └── <span class="dir">com.termux/</span>
+        └── <span class="dir">files/</span>
+            └── <span class="dir">usr/</span>
+                ├── <span class="dir">bin/</span>
+                ├── <span class="dir">lib/</span>
+                └── <span class="dir">share/</span>
+</pre>
+</div>
         <div class="callout">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
             <circle cx="8" cy="8" r="6.5"/>
