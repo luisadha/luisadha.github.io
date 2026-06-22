@@ -437,7 +437,8 @@ document.getElementById('domain').textContent = window.location.hostname;
             <span class="code-lang">bash · clone &amp; persiapan</span>
             <button class="copy-btn" onclick="copyCode(this)">salin</button>
           </div>
-          <pre><code><span class="dollar">$ </span>git clone https://github.com/luisadha/nene.git
+          <pre><code><span class="dollar">$ </span> pkg install git rsync -y
+<span class="dollar">$ </span>git clone https://github.com/luisadha/nene.git
 <span class="dollar">$ </span>chmod 0755 nene/DEBIAN
 
 <span class="dollar">$ </span>mkdir -p nene_aarch64
