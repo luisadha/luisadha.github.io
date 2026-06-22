@@ -1,6 +1,7 @@
 # luisadha.github.io Termux APT Repository
 > [!WARNING]
-> ***This repository was archived due to the author's failure to back up their own secret key. However, the installation of the nene package will remain available through this repository, though no additional package content can be added.***
+> **We sincerely apologize for the inconvenience.**
+> This repository was archived due to the author's failure to back up their own secret key. However, the installation of the nene package will remain available through this repository, though no additional package content can be added.
 
 
 
