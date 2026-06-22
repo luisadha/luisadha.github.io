@@ -2,9 +2,9 @@
 
 Repositori APT pribadi untuk Termux, dihosting melalui GitHub Pages.
 
-> Periksa metadata: [Packages](https://luisadha.github.io/dists/stable/main/binary-aarch64/Packages)
+> Periksa metadata: [Packages](https://repo.luisadha.dev/dists/stable/main/binary/aarch64/Packages)
 
-> Langganan repositori ini:
+> Langganan [repositori](https://repo.luisadha.dev/install-repo.sh) ini:
 
 ```sh
  wget https://repo.luisadha.dev/install-repo.sh && bash install-repo.sh
