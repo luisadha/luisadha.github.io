@@ -470,15 +470,9 @@ document.getElementById('domain').textContent = window.location.hostname;
           <div class="code-header">
             <span class="code-lang">bash</span>
             <button class="copy-btn" onclick="copyCode(this)">salin</button>
-          </div>
-          <pre><code><span class="dollar">$ </span>git clone https://github.com/luisadha/luisadha.github.io.git
-<span class="dollar">$ </span>
-            rsync -av nene_aarch64.deb luisadha.github.io/
-<span class="dollar">$ </span>
-            termux-apt-repo luisadha.github.io $TMPDIR/repo-build stable main --sign
- <span class="dollar">$ </span>
-            rsync -av --delete $TMPDIR/repo-build luisadha.github.io/
-        </code></pre>
+          </div><pre><code><span class="dollar">$ </span>git clone https://github.com/luisadha/luisadha.github.io.git
+<span class="dollar">$ </span>rsync -av nene_aarch64.deb luisadha.github.io/
+<span class="dollar">$ </span>termux-apt-repo luisadha.github.io luisadha.github.io stable main --sign</code></pre>
         </div>
       </div>
 
