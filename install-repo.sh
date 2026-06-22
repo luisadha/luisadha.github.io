@@ -1,4 +1,5 @@
-Author     : luisadha
+#!/data/data/com.termux/files/usr/bin/bash
+#Author     : luisadha
 # Create date:  15-Jun-2026 
 # Get some needed tools. coreutils for mkdir command, gnugp for the signing key, and apt-transport-https to actually connect to the repo
 pkg i wget -y gnupg
@@ -9,6 +10,7 @@ if [ ! -f "$PREFIX/etc/apt/sources.list.d/luisadha.list" ]; then
     wget -qP $PREFIX/etc/apt/trusted.gpg.d https://repo.luisadha.dev/luisadha-dev.gpg
 	apt update
 else 
+    apt update
 	echo "repo already installed"
 fi 
 
