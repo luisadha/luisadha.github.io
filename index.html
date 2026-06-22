@@ -437,7 +437,9 @@ document.getElementById('domain').textContent = window.location.hostname;
             <span class="code-lang">bash · clone &amp; persiapan</span>
             <button class="copy-btn" onclick="copyCode(this)">salin</button>
           </div>
-          <pre><code><span class="dollar">$ </span> pkg install git rsync -y
+          <pre><code><span class="dollar">$ </span>pkg install git rsync termux-apt-repo gnupg -y
+<span class="dollar">$ </span>gpg --full-generate-key
+<span class="dollar">$ </span>gpg --export &ltyour email&gt > your-public-key.gpg
 <span class="dollar">$ </span>git clone https://github.com/luisadha/nene.git
 <span class="dollar">$ </span>chmod 0755 nene/DEBIAN
 
@@ -470,10 +472,13 @@ document.getElementById('domain').textContent = window.location.hostname;
             <button class="copy-btn" onclick="copyCode(this)">salin</button>
           </div>
           <pre><code><span class="dollar">$ </span>git clone https://github.com/luisadha/luisadha.github.io.git
-
-<span class="dollar">$ </span>mv nene_aarch64.deb luisadha.github.io/
-
-<span class="dollar">$ </span>termux-apt-repo luisadha.github.io luisadha.github.io stable main</code></pre>
+<span class="dollar">$ </span>
+            rsync -av nene_aarch64.deb luisadha.github.io/
+<span class="dollar">$ </span>
+            termux-apt-repo luisadha.github.io $TMPDIR/repo-build stable main --sign
+ <span class="dollar">$ </span>
+            rsync -av --delete $TMPDIR/repo-build luisadha.github.io/
+        </code></pre>
         </div>
       </div>
 
