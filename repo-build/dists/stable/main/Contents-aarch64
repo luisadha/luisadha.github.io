@@ -1,9 +1,0 @@
-data/data/com.termux/files/usr/bin/nene                                          nene
-data/data/com.termux/files/usr/bin/nene-setup.sh                                 nene
-data/data/com.termux/files/usr/libexec/not-echo-not-true.py                      nene
-data/data/com.termux/files/usr/share/bash-completion/completions/nene            nene
-data/data/com.termux/files/usr/share/doc/nene/.gitignore                         nene
-data/data/com.termux/files/usr/share/doc/nene/LICENSE                            nene
-data/data/com.termux/files/usr/share/doc/nene/README.md                          nene
-data/data/com.termux/files/usr/share/man/man1/nene.1                             nene
-data/data/com.termux/files/usr/share/man/man1/nene.1.gz                          nene
