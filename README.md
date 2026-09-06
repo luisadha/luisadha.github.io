@@ -1,8 +1,17 @@
-# luisadha.github.io Termux APT Repository
+# THIRD-PARTY TERMUX APT REPOSITORY
 > [!WARNING]
 > **We sincerely apologize for the inconvenience.**
 > This repository was archived due to the author's failure to back up their own secret key. However, the installation of the nene package will remain available through this repository, though no additional package content can be added.
 
+```sh
+~ $ pkg install nene
+Checking availability of current mirror: [*] https://ftp.fau.de/termux/termux-main: ok
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+E: Unable to locate package nene.. 
+```
+# Here’s the solution.
 
 
 ## Repositori APT pribadi untuk Termux, dihosting melalui GitHub Pages.
