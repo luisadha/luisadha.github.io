@@ -58,7 +58,7 @@ Install paket:
 pkg install <nama-paket>
 ```
 
-Perbaiki versi yang tidak singkron
+PERBAIKI VERSI YANG TIDAK SINGKRON
 
 ```
 pkg clean
@@ -133,6 +133,17 @@ mv nene_aarch64.deb luisadha.github.io/
 
 termux-apt-repo luisadha.github.io luisadha.github.io stable main
 ```
+> [!NOTE]
+> ```sh
+> # JIKA ANDA LUPA KUNCI PRIVATE
+> cd luisadha.github.io./dists/stable/
+> # Hapus InRelease kalau ada
+> rm -f InRelease
+> # Buat Release tanpa GPG
+> apt-ftparchive release . > Release
+> JIKA ANDA PUNYA KUNCI PRIVATE
+> # apt-ftparchive release . | gpg --clearsign > InRelease
+> ```
 
 ### 5. Push ke GitHub
 
